@@ -1,0 +1,4 @@
+# Zsh plugins (auto-cloned with --depth 1)
+zsh/plugins/*
+!zsh/plugins/.gitkeep
+zsh/oddities.zsh

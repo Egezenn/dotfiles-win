@@ -1,0 +1,95 @@
+"$schema" = 'https://starship.rs/config-schema.json'
+
+format = "$all"
+add_newline = false
+scan_timeout = 1000
+command_timeout = 1000
+
+[battery]
+disabled = true
+
+[cmd_duration]
+min_time = 2000
+format = '[$duration](#858585) '
+
+[directory]
+disabled = false
+style = "bold #ffffff"
+format = '[$read_only]($read_only_style)[$path]($style) '
+home_symbol = '~'
+read_only = " 󰌾"
+read_only_style = "bold #f14c4c"
+before_repo_root_style = "#858585"
+repo_root_style = "bold #ffffff"
+truncate_to_repo = true
+truncation_length = 5
+truncation_symbol = '…\'
+
+[git_branch]
+symbol = " "
+style = "bold #3794ff"
+format = "[$symbol$branch(:$remote_branch)]($style) "
+ignore_branches = []
+
+[git_status]
+disabled = false
+style = "bold #75beff"
+format = '([$all_status$ahead_behind]($style) )'
+conflicted = '󰞇 '
+ahead = '⇡${count}'
+behind = '⇣${count}'
+diverged = '⇡${ahead_count}⇣${behind_count}'
+untracked = '?${count}'
+stashed = '󰘓 '
+modified = '!${count}'
+staged = '+${count}'
+renamed = '» '
+deleted = '✘${count}'
+
+[jobs]
+number_threshold = 1
+format = '[$number$symbol]($style) '
+symbol = 'j'
+style = "#858585"
+
+[line_break]
+disabled = false
+
+[package]
+format = '[$version]($style) '
+style = "#858585"
+
+[shell]
+format = 'in [$indicator]($style) '
+disabled = true
+
+[username]
+disabled = true
+show_always = false
+
+[character]
+disabled = false
+success_symbol = '[❯](bold #007acc)'
+error_symbol = '[❯](bold #f14c4c)'
+vimcmd_symbol = '[❮](bold #dcdcaa)'
+
+[c]
+format = '[$symbol($version(-$name) )]($style)'
+[cpp]
+format = '[$symbol($version(-$name) )]($style)'
+disabled = false
+[cmake]
+format = '[$symbol($version )]($style)'
+[dotnet]
+format = '[$symbol($version )(🎯 $tfm )]($style)'
+[golang]
+format = '[$symbol($version )]($style)'
+symbol = 'go '
+[nodejs]
+format = '[$symbol($version )]($style)'
+[python]
+format = '[${symbol}${pyenv_prefix}(${version} )(\($virtualenv\) )]($style)'
+[rust]
+format = '[$symbol($version )]($style)'
+[typst]
+format = '[$symbol($version )]($style)'

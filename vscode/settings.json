@@ -1,0 +1,30 @@
+{
+    "editor.fontFamily": "MesloLGM Nerd Font Mono",
+    "editor.minimap.enabled": false,
+    "explorer.confirmDelete": false,
+    "explorer.confirmDragAndDrop": false,
+    "explorer.confirmPasteNative": false,
+    "git.enableSmartCommit": true,
+    "python.languageServer": "Default",
+    "terminal.integrated.defaultProfile.windows": "MSYS2 UCRT64",
+    "terminal.integrated.fontFamily": "MesloLGM Nerd Font Mono",
+    "terminal.integrated.profiles.windows": {
+        "MSYS2 UCRT64": {
+            "path": "C:\\msys64\\usr\\bin\\zsh.exe",
+            "args": [
+                "-l"
+            ],
+            "env": {
+                "MSYSTEM": "UCRT64",
+                "CHERE_INVOKING": "1",
+                "MSYS2_PATH_TYPE": "inherit",
+                "MSYS": "winsymlinks:nativestrict"
+            }
+        }
+    },
+    "workbench.activityBar.location": "top",
+    "workbench.sideBar.location": "right",
+    "workbench.startupEditor": "none",
+    "terminal.external.linuxExec": "ghostty",
+    "terminal.external.windowsExec": "wt"
+}
