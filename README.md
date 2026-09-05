@@ -7,8 +7,8 @@ Autounattend: https://github.com/cschneegans/unattend-generator
 ## AutoHotkey
 
 [sswm](ahk/sswm.ahk) with VDA for workspaces:
-- Replaces CapsLock with next/prev workspace
-- <kbd>#x</kbd> for switches (11th desktop is ignored to drop any long running background tasks #^Del to focus, <kbd>#^+Del</kbd> to move)
+- Replaces <kbd>CapsLock</kbd> with next/prev workspace
+- <kbd>#x</kbd> for switches (11th desktop is ignored to drop any long running background tasks <kbd>#^Del</kbd> to focus, <kbd>#^+Del</kbd> to move)
 - <kbd>#CapsLock</kbd>, <kbd>#F1-4</kbd> (hjkl) to focus to windows (works fine for a quad setup, anything else is out of scope and may be undeterministic) 
 - <kbd>#!CapsLock</kbd> to reinit workspace window cache
 - <kbd>#F5</kbd> to pin a window across workspaces

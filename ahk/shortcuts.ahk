@@ -58,6 +58,10 @@
     }
 }
 
+#w:: {
+    Run("C:\Users\" . A_UserName . "\AppData\Local\Programs\VSCodium\VSCodium.exe")
+}
+
 ; Minimize Everything when Escape is pressed while it's active
 #HotIf WinActive("ahk_class EVERYTHING") || WinActive("ahk_exe Everything.exe")
 Esc:: WinMinimize("A")
