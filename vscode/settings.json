@@ -13,13 +13,7 @@
             "path": "C:\\msys64\\usr\\bin\\zsh.exe",
             "args": [
                 "-l"
-            ],
-            "env": {
-                "MSYSTEM": "UCRT64",
-                "CHERE_INVOKING": "1",
-                "MSYS2_PATH_TYPE": "inherit",
-                "MSYS": "winsymlinks:nativestrict"
-            }
+            ]
         }
     },
     "workbench.activityBar.location": "top",

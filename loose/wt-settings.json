@@ -49,13 +49,6 @@
         [
             {
                 "commandline": "C:\\msys64\\usr\\bin\\zsh.exe -l",
-                "environment": 
-                {
-                    "CHERE_INVOKING": "1",
-                    "MSYS": "winsymlinks:nativestrict",
-                    "MSYS2_PATH_TYPE": "inherit",
-                    "MSYSTEM": "UCRT64"
-                },
                 "guid": "{6b4b49a3-46aa-4902-83c2-10017b10ffa0}",
                 "hidden": false,
                 "icon": "C:\\msys64\\ucrt64.ico",
@@ -73,9 +66,6 @@
                 "commandline": "C:\\msys64\\usr\\bin\\zsh.exe -l",
                 "environment": 
                 {
-                    "CHERE_INVOKING": "1",
-                    "MSYS": "winsymlinks:nativestrict",
-                    "MSYS2_PATH_TYPE": "inherit",
                     "MSYSTEM": "MSYS"
                 },
                 "guid": "{71160544-14d8-4194-af25-d05feeac7233}",
@@ -106,9 +96,6 @@
                 "commandline": "C:\\msys64\\usr\\bin\\zsh.exe -l",
                 "environment": 
                 {
-                    "CHERE_INVOKING": "1",
-                    "MSYS": "winsymlinks:nativestrict",
-                    "MSYS2_PATH_TYPE": "inherit",
                     "MSYSTEM": "MINGW64"
                 },
                 "guid": "{a4805c6c-8e4d-44a6-8968-3e49e29a997d}",
@@ -121,9 +108,6 @@
                 "commandline": "C:\\msys64\\usr\\bin\\zsh.exe -l",
                 "environment": 
                 {
-                    "CHERE_INVOKING": "1",
-                    "MSYS": "winsymlinks:nativestrict",
-                    "MSYS2_PATH_TYPE": "inherit",
                     "MSYSTEM": "CLANG64"
                 },
                 "guid": "{f4728564-9426-4b8a-86cb-ef8df1b53f31}",
@@ -136,9 +120,6 @@
                 "commandline": "C:\\msys64\\usr\\bin\\zsh.exe -l",
                 "environment": 
                 {
-                    "CHERE_INVOKING": "1",
-                    "MSYS": "winsymlinks:nativestrict",
-                    "MSYS2_PATH_TYPE": "inherit",
                     "MSYSTEM": "MINGW32"
                 },
                 "guid": "{8f081c7c-e090-482f-b44c-2236b28eb38e}",
@@ -151,9 +132,6 @@
                 "commandline": "C:\\msys64\\usr\\bin\\zsh.exe -l",
                 "environment": 
                 {
-                    "CHERE_INVOKING": "1",
-                    "MSYS": "winsymlinks:nativestrict",
-                    "MSYS2_PATH_TYPE": "inherit",
                     "MSYSTEM": "CLANGARM64"
                 },
                 "guid": "{c9082987-df5b-4228-bfae-c15c545763e0}",
