@@ -1,5 +1,6 @@
 {
     "editor.fontFamily": "MesloLGM Nerd Font Mono",
+    "editor.formatOnSave": true,
     "editor.minimap.enabled": false,
     "explorer.confirmDelete": false,
     "explorer.confirmDragAndDrop": false,

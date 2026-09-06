@@ -145,3 +145,14 @@ ToggleService(serviceName, opts := {}) {
         ShowTooltip(resultMsg)
     return resultMsg
 }
+
+GetWindowUnderCursor() {
+    MouseGetPos(, , &hwnd)
+    winClass := "", winExe := "", winTitle := ""
+    if (hwnd) {
+        try winClass := WinGetClass(hwnd)
+        try winExe := WinGetProcessName(hwnd)
+        try winTitle := WinGetTitle(hwnd)
+    }
+    return { hwnd: hwnd, class: winClass, exe: winExe, title: winTitle }
+}

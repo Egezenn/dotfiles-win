@@ -1,8 +1,8 @@
 #Requires AutoHotkey v2.0
 
 ; Suppress bare Windows key (Start menu won't appear, Win hotkeys still work)
-~LWin::Send("{Blind}{vkE8}")
-~RWin::Send("{Blind}{vkE8}")
+~LWin:: Send("{Blind}{vkE8}")
+~RWin:: Send("{Blind}{vkE8}")
 
 ; Win + c: Close active window
 #c:: {
@@ -11,7 +11,7 @@
         if (!hwnd)
             return
         cls := WinGetClass(hwnd)
-        if (cls == "Shell_TrayWnd" || cls == "Progman" || cls == "WorkerW")
+        if (cls == "Shell_TrayWnd" || cls == "Shell_SecondaryTrayWnd" || cls == "Progman" || cls == "WorkerW")
             return
         WinClose(hwnd)
     }
@@ -24,7 +24,7 @@
         if (!hwnd)
             return
         cls := WinGetClass(hwnd)
-        if (cls == "Shell_TrayWnd" || cls == "Progman" || cls == "WorkerW")
+        if (cls == "Shell_TrayWnd" || cls == "Shell_SecondaryTrayWnd" || cls == "Progman" || cls == "WorkerW")
             return
         pid := WinGetPID(hwnd)
         if (pid) {
@@ -40,6 +40,18 @@
 
 #+x:: A_Clipboard := ""
 #+r:: FileRecycleEmpty
+
+Ins:: {
+    try WinSetTransparent 255, "ahk_class Shell_TrayWnd"
+    WinActivate("ahk_class Shell_TrayWnd")
+    WinGetPos(&bx, &by, &bw, &bh, "ahk_class Shell_TrayWnd")
+    MouseMove(bx + (bw // 2), by + (bh // 2), 0)
+    Sleep(100)
+    while (win := GetWindowUnderCursor()) && (win.class == "Shell_TrayWnd" || win.class == "Shell_SecondaryTrayWnd") {
+        Sleep(50)
+    }
+    try WinSetTransparent 0, "ahk_class Shell_TrayWnd"
+}
 
 #s:: Run('"C:\Program Files\Everything 1.5a\Everything.exe" -sort "Date Modified" -sort-descending -s ""')
 #r:: Run('"C:\Program Files\Everything 1.5a\Everything.exe" -sort "Run Count" -sort-descending -s "ext:lnk "')

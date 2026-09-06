@@ -78,7 +78,7 @@ RefreshWorkspaceWindows() {
     for hwnd in WinGetList() {
         try {
             cls := WinGetClass(hwnd)
-            if (cls == "Shell_TrayWnd" || cls == "Progman" || cls == "WorkerW")
+            if (cls == "Shell_TrayWnd" || cls == "Shell_SecondaryTrayWnd" || cls == "Progman" || cls == "WorkerW")
                 continue
 
             exStyle := WinGetExStyle(hwnd)
@@ -125,7 +125,7 @@ SaveCurrentFocus() {
         activeHwnd := WinGetID("A")
         if (activeHwnd && current >= 0) {
             cls := WinGetClass(activeHwnd)
-            if (cls != "Shell_TrayWnd" && cls != "Progman" && cls != "WorkerW") {
+            if (cls != "Shell_TrayWnd" && cls != "Shell_SecondaryTrayWnd" && cls != "Progman" && cls != "WorkerW") {
                 LastActiveWindows[current] := activeHwnd
                 if (!WorkspaceWindows.Has(current))
                     WorkspaceWindows[current] := Map()
@@ -169,7 +169,7 @@ FocusDesktop(target) {
             if (!(style & 0x10000000) || (exStyle & 0x00000080))
                 continue
             cls := WinGetClass(hwnd)
-            if (cls == "Shell_TrayWnd" || cls == "Progman" || cls == "WorkerW")
+            if (cls == "Shell_TrayWnd" || cls == "Shell_SecondaryTrayWnd" || cls == "Progman" || cls == "WorkerW")
                 continue
             title := WinGetTitle(hwnd)
             if (title == "")
@@ -338,7 +338,7 @@ GetDesktopWindows() {
                 continue
 
             cls := WinGetClass(hwnd)
-            if (cls == "Shell_TrayWnd" || cls == "Progman" || cls == "WorkerW" || cls == "Windows.UI.Core.CoreWindow")
+            if (cls == "Shell_TrayWnd" || cls == "Shell_SecondaryTrayWnd" || cls == "Progman" || cls == "WorkerW" || cls == "Windows.UI.Core.CoreWindow")
                 continue
 
             style := WinGetStyle(hwnd)
@@ -376,7 +376,6 @@ ActivateAndCenter(hwnd, moveCursor := true) {
     }
     if (moveCursor) {
         WinGetPos(&bx, &by, &bw, &bh, hwnd)
-        CoordMode("Mouse", "Screen")
         MouseMove(bx + (bw // 2), by + (bh // 2), 0)
     }
 }
@@ -506,7 +505,7 @@ TogglePinActiveWindow() {
             return
 
         cls := WinGetClass(activeHwnd)
-        if (cls == "Shell_TrayWnd" || cls == "Progman" || cls == "WorkerW")
+        if (cls == "Shell_TrayWnd" || cls == "Shell_SecondaryTrayWnd" || cls == "Progman" || cls == "WorkerW")
             return
 
         isPinned := DllCall(IsPinnedWindowProc, "Ptr", activeHwnd, "Int")
@@ -525,7 +524,7 @@ TogglePierceActiveWindow() {
         if (!hwnd)
             return
         cls := WinGetClass(hwnd)
-        if (cls == "Shell_TrayWnd" || cls == "Progman" || cls == "WorkerW")
+        if (cls == "Shell_TrayWnd" || cls == "Shell_SecondaryTrayWnd" || cls == "Progman" || cls == "WorkerW")
             return
 
         if PiercedWindows.Has(hwnd) {
@@ -570,7 +569,7 @@ ToggleAltTabActiveWindow() {
         if (!hwnd)
             return
         cls := WinGetClass(hwnd)
-        if (cls == "Shell_TrayWnd" || cls == "Progman" || cls == "WorkerW")
+        if (cls == "Shell_TrayWnd" || cls == "Shell_SecondaryTrayWnd" || cls == "Progman" || cls == "WorkerW")
             return
 
         if AltTabRemovedWindows.Has(hwnd) {

@@ -99,11 +99,17 @@
         "key": "ctrl+numpad0"
     },
     {
-        "command": "workbench.action.toggleMaximizedPanel",
-        "key": "oem_102"
-    },
-    {
         "command": "json.sort",
         "key": "ctrl+alt+j"
+    },
+    {
+        "key": "ctrl+oem_102",
+        "command": "editor.action.deleteLines",
+        "when": "textInputFocus && !editorReadonly"
+    },
+    {
+        "key": "ctrl+shift+k",
+        "command": "-editor.action.deleteLines",
+        "when": "textInputFocus && !editorReadonly"
     }
 ]
