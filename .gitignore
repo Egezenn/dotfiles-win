@@ -2,3 +2,4 @@
 zsh/plugins/*
 !zsh/plugins/.gitkeep
 zsh/oddities.zsh
+ahk/oddities.ahk

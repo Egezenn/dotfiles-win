@@ -34,35 +34,18 @@
     }
 }
 
-; Win + s: Search files via Everything 1.5a (sorted by Date Modified)
-#s:: {
-    if WinActive("ahk_class EVERYTHING") || WinActive("ahk_exe Everything.exe") {
-        WinMinimize("A")
-    } else {
-        Run('"C:\Program Files\Everything 1.5a\Everything.exe" -sort "Date Modified" -sort-descending -s ""')
-    }
-}
+#w:: LaunchApp("C:\Users\" . A_UserName . "\AppData\Local\Programs\VSCodium\VSCodium.exe")
+#x:: LaunchApp("wt.exe", { winTitle: "WindowsTerminal.exe" })
+#!x:: LaunchApp("wt.exe -p PowerShell", { winTitle: "WindowsTerminal.exe" })
 
-#x:: {
-    Run("wt.exe")
-    WinWait("ahk_exe WindowsTerminal.exe",,5)
-    WinActivate("ahk_exe WindowsTerminal.exe")
-}
+#+x:: A_Clipboard := ""
+#+r:: FileRecycleEmpty
 
-; Win + r: App launcher via Everything 1.5a (.lnk shortcuts only, sorted by Run Count)
-#r:: {
-    if WinActive("ahk_class EVERYTHING") || WinActive("ahk_exe Everything.exe") {
-        WinMinimize("A")
-    } else {
-        Run('"C:\Program Files\Everything 1.5a\Everything.exe" -sort "Run Count" -sort-descending -s "ext:lnk "')
-    }
-}
+#s:: Run('"C:\Program Files\Everything 1.5a\Everything.exe" -sort "Date Modified" -sort-descending -s ""')
+#r:: Run('"C:\Program Files\Everything 1.5a\Everything.exe" -sort "Run Count" -sort-descending -s "ext:lnk "')
 
-#w:: {
-    Run("C:\Users\" . A_UserName . "\AppData\Local\Programs\VSCodium\VSCodium.exe")
-}
-
-; Minimize Everything when Escape is pressed while it's active
 #HotIf WinActive("ahk_class EVERYTHING") || WinActive("ahk_exe Everything.exe")
 Esc:: WinMinimize("A")
+#s:: WinMinimize("A")
+#r:: WinMinimize("A")
 #HotIf

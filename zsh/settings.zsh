@@ -69,3 +69,19 @@ zstyle ':completion:*' completer _extensions _complete _approximate
 # Cache expensive completions
 zstyle ':completion:*' use-cache on
 zstyle ':completion:*' cache-path "${XDG_CACHE_HOME:-$HOME/.cache}/zsh"
+
+# MSYS2 Windows Drive Completion: register mounted drives under / as fake-files
+() {
+    local -a drives
+    if [[ -f /proc/mounts ]]; then
+        local src mount_pt rest
+        while read -r src mount_pt rest; do
+            if [[ "$src" = [A-Za-z]: && "$mount_pt" = /* ]]; then
+                drives+=("${mount_pt#/}")
+            fi
+        done < /proc/mounts
+    elif (( $+commands[mount] )); then
+        drives=($(mount | awk '/^[A-Za-z]: on \/[a-z] / { print substr($3, 2) }'))
+    fi
+    (( $#drives )) && zstyle ':completion:*' fake-files "/:${(j. .)drives}"
+}
