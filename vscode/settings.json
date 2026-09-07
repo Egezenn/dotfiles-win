@@ -1,31 +1,31 @@
 {
-    "editor.fontFamily": "MesloLGM Nerd Font Mono",
-    "editor.formatOnSave": true,
-    "editor.minimap.enabled": false,
-    "explorer.confirmDelete": false,
-    "explorer.confirmDragAndDrop": false,
-    "explorer.confirmPasteNative": false,
-    "extensions.autoCheckUpdates": false,
-    "extensions.autoUpdate": "off",
-    "git.enableSmartCommit": true,
-    "python.languageServer": "Default",
-    "terminal.external.linuxExec": "ghostty",
-    "terminal.external.windowsExec": "wt",
-    "terminal.integrated.defaultProfile.windows": "MSYS2 UCRT64",
-    "terminal.integrated.fontFamily": "MesloLGM Nerd Font Mono",
-    "terminal.integrated.profiles.windows": {
-        "MSYS2 UCRT64": {
-            "args": [
-                "-l"
-            ],
-            "path": "C:\\msys64\\usr\\bin\\zsh.exe"
-        }
-    },
-    "update.enableWindowsBackgroundUpdates": false,
-    "update.mode": "none",
-    "update.showReleaseNotes": false,
-    "update.titleBar": false,
-    "workbench.activityBar.location": "top",
-    "workbench.sideBar.location": "right",
-    "workbench.startupEditor": "none"
+  "editor.fontFamily": "MesloLGM Nerd Font Mono",
+  "editor.formatOnSave": true,
+  "editor.minimap.enabled": false,
+  "explorer.autoReveal": false,
+  "explorer.confirmDelete": false,
+  "explorer.confirmDragAndDrop": false,
+  "explorer.confirmPasteNative": false,
+  "extensions.autoCheckUpdates": false,
+  "extensions.autoUpdate": "off",
+  "git.enableSmartCommit": true,
+  "python.languageServer": "Default",
+  "security.workspace.trust.untrustedFiles": "open",
+  "terminal.external.linuxExec": "ghostty",
+  "terminal.external.windowsExec": "wt",
+  "terminal.integrated.defaultProfile.windows": "MSYS2 UCRT64",
+  "terminal.integrated.fontFamily": "MesloLGM Nerd Font Mono",
+  "terminal.integrated.profiles.windows": {
+    "MSYS2 UCRT64": {
+      "args": ["-l"],
+      "path": "C:\\msys64\\usr\\bin\\zsh.exe"
+    }
+  },
+  "update.enableWindowsBackgroundUpdates": false,
+  "update.mode": "none",
+  "update.showReleaseNotes": false,
+  "update.titleBar": false,
+  "workbench.activityBar.location": "top",
+  "workbench.sideBar.location": "right",
+  "workbench.startupEditor": "none"
 }

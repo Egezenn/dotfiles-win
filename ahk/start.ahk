@@ -11,6 +11,7 @@ CoordMode("Mouse", "Screen")
 CoordMode("Pixel", "Screen")
 
 A_MenuMaskKey := "vkE8"
+A_HotkeyInterval := 0
 
 #Include "utils.ahk"
 #Include "sswm.ahk"

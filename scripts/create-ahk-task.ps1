@@ -35,9 +35,9 @@ $WorkingDir = Split-Path -Parent $AhkScriptPath
 # Resolve AutoHotkey v2 executable
 if (-not $AhkExePath) {
     $candidates = @(
-        "C:\Program Files\AutoHotkey\v2\AutoHotkey64.exe",
-        "$env:LOCALAPPDATA\Programs\AutoHotkey\v2\AutoHotkey64.exe",
-        (Get-Command AutoHotkey64.exe -ErrorAction SilentlyContinue | Select-Object -ExpandProperty Source -First 1)
+        "C:\Program Files\AutoHotkey\v2\AutoHotkey64_UIA.exe",
+        "$env:LOCALAPPDATA\Programs\AutoHotkey\v2\AutoHotkey64_UIA.exe",
+        (Get-Command AutoHotkey64_UIA.exe -ErrorAction SilentlyContinue | Select-Object -ExpandProperty Source -First 1),
     )
     foreach ($cand in $candidates) {
         if ($cand -and (Test-Path $cand)) {

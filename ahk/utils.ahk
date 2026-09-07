@@ -1,10 +1,40 @@
 #Requires AutoHotkey v2.0
 
-; Display an auto-dismissing tooltip (default 3 seconds)
-ShowTooltip(msg, timeoutMs := 3000) {
-    ToolTip(msg)
-    SetTimer(() => ToolTip(), -Abs(timeoutMs))
+; ------------------------------------------------------------------------------
+; Close
+; ------------------------------------------------------------------------------
+
+CloseActiveWindow() {
+    try {
+        hwnd := WinExist("A")
+        if (!hwnd)
+            return
+        cls := WinGetClass(hwnd)
+        if (cls == "Shell_TrayWnd" || cls == "Shell_SecondaryTrayWnd" || cls == "Progman" || cls == "WorkerW")
+            return
+        WinClose(hwnd)
+    }
 }
+
+KillActiveProcess() {
+    try {
+        hwnd := WinExist("A")
+        if (!hwnd)
+            return
+        cls := WinGetClass(hwnd)
+        if (cls == "Shell_TrayWnd" || cls == "Shell_SecondaryTrayWnd" || cls == "Progman" || cls == "WorkerW")
+            return
+        pid := WinGetPID(hwnd)
+        if (pid) {
+            if !ProcessClose(pid)
+                Run('taskkill.exe /F /PID ' pid, , 'Hide')
+        }
+    }
+}
+
+; ------------------------------------------------------------------------------
+; Launch
+; ------------------------------------------------------------------------------
 
 ; Extract executable file name from command string or path
 ExtractExeName(target) {
@@ -71,6 +101,158 @@ LaunchApp(target, opts := {}) {
     if (notify)
         ShowTooltip("Launched: " . ExtractExeName(target))
     return true
+}
+
+; ------------------------------------------------------------------------------
+; Zoom
+; ------------------------------------------------------------------------------
+
+global CurrentZoom := 1.0
+global MagInitialized := false
+
+EnsureMagInit() {
+    global MagInitialized
+    if (!MagInitialized) {
+        DllCall("LoadLibrary", "Str", "Magnification.dll", "Ptr")
+        if DllCall("Magnification.dll\MagInitialize", "Int") {
+            MagInitialized := true
+            DllCall("Magnification.dll\MagSetFullscreenUseBitmapSmoothing", "Int", 0)
+        }
+    } else {
+        DllCall("Magnification.dll\MagSetFullscreenUseBitmapSmoothing", "Int", 0)
+    }
+    return MagInitialized
+}
+
+CloseZoom() {
+    global CurrentZoom
+    SetTimer(UpdateZoomView, 0)
+    CurrentZoom := 1.0
+    DllCall("Magnification.dll\MagSetFullscreenTransform", "Float", 1.0, "Int", 0, "Int", 0)
+}
+
+UpdateZoomView() {
+    global CurrentZoom
+    if (CurrentZoom <= 1.0)
+        return
+
+    MouseGetPos(&mx, &my)
+
+    srcW := Round(A_ScreenWidth / CurrentZoom)
+    srcH := Round(A_ScreenHeight / CurrentZoom)
+
+    left := mx - (srcW // 2)
+    top := my - (srcH // 2)
+
+    if (left < 0)
+        left := 0
+    else if (left + srcW > A_ScreenWidth)
+        left := A_ScreenWidth - srcW
+
+    if (top < 0)
+        top := 0
+    else if (top + srcH > A_ScreenHeight)
+        top := A_ScreenHeight - srcH
+
+    DllCall("Magnification.dll\MagSetFullscreenTransform", "Float", CurrentZoom, "Int", left, "Int", top)
+}
+
+ApplyZoom(level) {
+    global CurrentZoom
+    if (!EnsureMagInit())
+        return
+
+    level := Min(5.0, Max(1.0, level))
+
+    if (level <= 1.0) {
+        CloseZoom()
+        return
+    }
+
+    CurrentZoom := level
+    UpdateZoomView()
+    SetTimer(UpdateZoomView, 16) ; ~60 fps cursor tracking
+}
+
+ZoomIn() {
+    global CurrentZoom
+    ApplyZoom(CurrentZoom + 0.25)
+}
+
+ZoomOut() {
+    global CurrentZoom
+    ApplyZoom(CurrentZoom - 0.25)
+}
+
+; ------------------------------------------------------------------------------
+; Window utilities
+; ------------------------------------------------------------------------------
+
+GetWindowUnderCursor() {
+    MouseGetPos(, , &hwnd)
+    winClass := "", winExe := "", winTitle := ""
+    if (hwnd) {
+        try winClass := WinGetClass(hwnd)
+        try winExe := WinGetProcessName(hwnd)
+        try winTitle := WinGetTitle(hwnd)
+    }
+    return { hwnd: hwnd, class: winClass, exe: winExe, title: winTitle }
+}
+
+AdjustWindowTransparency(delta) {
+    MouseGetPos(, , &hwnd)
+    if (!hwnd)
+        hwnd := WinExist("A")
+    if (!hwnd)
+        return
+
+    try {
+        cls := WinGetClass(hwnd)
+        if (cls == "Shell_TrayWnd" || cls == "Shell_SecondaryTrayWnd" || cls == "Progman" || cls == "WorkerW")
+            return
+    } catch {
+        return
+    }
+
+    try {
+        current := WinGetTransparent(hwnd)
+    } catch {
+        current := ""
+    }
+
+    if (current == "")
+        current := 255
+
+    newTrans := Max(30, Min(255, current + delta))
+    try {
+        if (newTrans >= 255)
+            WinSetTransparent("Off", hwnd)
+        else
+            WinSetTransparent(newTrans, hwnd)
+    }
+}
+
+RevealTaskbar() {
+    try WinSetTransparent 255, "ahk_class Shell_TrayWnd"
+    WinActivate("ahk_class Shell_TrayWnd")
+    WinGetPos(&bx, &by, &bw, &bh, "ahk_class Shell_TrayWnd")
+    MouseGetPos(&mx)
+    MouseMove(mx, by + (bh // 2), 0)
+    Sleep(100)
+    while (win := GetWindowUnderCursor()) && (win.class == "Shell_TrayWnd" || win.class == "Shell_SecondaryTrayWnd") {
+        Sleep(50)
+    }
+    try WinSetTransparent 0, "ahk_class Shell_TrayWnd"
+}
+
+; ------------------------------------------------------------------------------
+; Rest
+; ------------------------------------------------------------------------------
+
+; Display an auto-dismissing tooltip (default 3 seconds)
+ShowTooltip(msg, timeoutMs := 3000) {
+    ToolTip(msg)
+    SetTimer(() => ToolTip(), -Abs(timeoutMs))
 }
 
 ; Toggle a Windows service (running <-> stopped) using native Service Control Manager APIs
@@ -144,15 +326,4 @@ ToggleService(serviceName, opts := {}) {
     if (notify)
         ShowTooltip(resultMsg)
     return resultMsg
-}
-
-GetWindowUnderCursor() {
-    MouseGetPos(, , &hwnd)
-    winClass := "", winExe := "", winTitle := ""
-    if (hwnd) {
-        try winClass := WinGetClass(hwnd)
-        try winExe := WinGetProcessName(hwnd)
-        try winTitle := WinGetTitle(hwnd)
-    }
-    return { hwnd: hwnd, class: winClass, exe: winExe, title: winTitle }
 }
