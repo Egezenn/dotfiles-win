@@ -139,6 +139,24 @@
                 "icon": "C:\\msys64\\clangarm64.ico",
                 "name": "MSYS2 CLANGARM64",
                 "startingDirectory": "%USERPROFILE%"
+            },
+            {
+                "guid": "{df1bb342-5d5d-5f04-a38b-d72bc2f2187b}",
+                "hidden": false,
+                "name": "Developer Command Prompt for VS 18",
+                "source": "Windows.Terminal.VisualStudio"
+            },
+            {
+                "guid": "{1ca35566-4bf0-51e1-8dcf-d95c75d8a8b4}",
+                "hidden": false,
+                "name": "Developer PowerShell for VS 18",
+                "source": "Windows.Terminal.VisualStudio"
+            },
+            {
+                "guid": "{16208362-94fc-5b1f-a491-5b2624d5ab56}",
+                "hidden": true,
+                "name": "Visual Studio Debug Console",
+                "source": "VSDebugConsole"
             }
         ]
     },

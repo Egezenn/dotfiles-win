@@ -2,7 +2,6 @@
 ; Simple Stupid Window Manager
 #Requires AutoHotkey v2.0
 
-; Load VirtualDesktopAccessor DLL
 vdaDll := "C:\Users\" . A_UserName . "\bin\VirtualDesktopAccessor.dll"
 hVDA := DllCall("LoadLibrary", "Str", vdaDll, "Ptr")
 
@@ -605,9 +604,49 @@ RevertAllAltTabRemovedWindows() {
     }
 }
 
+global MonitorPowerOff := false
+
+; Toggle monitor hardware power via DDC/CI
+; Falls back to Windows DPMS if DDC/CI is unavailable.
+ToggleMonitorOutput() {
+    global MonitorPowerOff
+
+    ddcSuccess := false
+    loop MonitorGetCount() {
+        MonitorGet(A_Index, &l, &t, &r, &b)
+        pt := (l & 0xFFFFFFFF) | (t << 32)
+        hMon := DllCall("user32\MonitorFromPoint", "Int64", pt, "UInt", 1, "Ptr")
+        if (!hMon)
+            continue
+        count := 0
+        if DllCall("dxva2\GetNumberOfPhysicalMonitorsFromHMONITOR", "Ptr", hMon, "UInt*", &count) && count > 0 {
+            buf := Buffer(count * 264, 0)
+            if DllCall("dxva2\GetPhysicalMonitorsFromHMONITOR", "Ptr", hMon, "UInt", count, "Ptr", buf) {
+                loop count {
+                    hPhys := NumGet(buf, (A_Index - 1) * 264, "Ptr")
+                    cur := 0, maxVal := 0
+                    hasCur := DllCall("dxva2\GetVCPFeatureAndVCPFeatureReply", "Ptr", hPhys, "UChar", 0xD6, "Ptr", 0, "UInt*", &cur, "UInt*", &maxVal)
+                    targetState := (MonitorPowerOff || (hasCur && cur != 1)) ? 1 : 4
+                    if DllCall("dxva2\SetVCPFeature", "Ptr", hPhys, "UChar", 0xD6, "UInt", targetState) {
+                        ddcSuccess := true
+                    }
+                }
+                DllCall("dxva2\DestroyPhysicalMonitors", "UInt", count, "Ptr", buf)
+            }
+        }
+    }
+
+    if (ddcSuccess) {
+        MonitorPowerOff := !MonitorPowerOff
+    } else {
+        Sleep(250)
+        DllCall("DefWindowProc", "Ptr", A_ScriptHwnd, "UInt", 0x0112, "Ptr", 0xF170, "Ptr", 2)
+        try SendMessage(0x0112, 0xF170, 2, , "Program Manager")
+    }
+}
+
 #MaxThreadsBuffer True
 #MaxThreadsPerHotkey 10
-; Win + 1..9 -> Switch to Workspaces 1..9 (0-indexed: 0..8)
 #1:: GoToDesktop(0)
 #2:: GoToDesktop(1)
 #3:: GoToDesktop(2)
@@ -620,7 +659,6 @@ RevertAllAltTabRemovedWindows() {
 #0:: GoToDesktop(9)
 #^Del:: GoToDesktop(10)
 
-; Win + Shift + 1..9 -> Move active window to Workspaces 1..9
 #+1:: MoveWindowToDesktop(0)
 #+2:: MoveWindowToDesktop(1)
 #+3:: MoveWindowToDesktop(2)
@@ -648,5 +686,6 @@ CapsLock:: GoToNextDesktop(true)
 #+F6:: RevertAllPiercedWindows()  ; Revert all pierced through windows
 #F7:: ToggleAltTabActiveWindow()  ; Remove/restore focused window from Alt+Tab
 #+F7:: RevertAllAltTabRemovedWindows() ; Revert all windows removed from Alt+Tab
+#F9:: ToggleMonitorOutput()
 #MaxThreadsBuffer False
 #MaxThreadsPerHotkey 1

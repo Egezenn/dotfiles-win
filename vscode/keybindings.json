@@ -1,115 +1,119 @@
 [
-    {
-        "command": "workbench.action.nextEditor",
-        "key": "ctrl+tab"
-    },
-    {
-        "command": "-workbench.action.nextEditor",
-        "key": "ctrl+pagedown"
-    },
-    {
-        "command": "-workbench.action.quickOpenPreviousRecentlyUsedEditorInGroup",
-        "key": "ctrl+tab",
-        "when": "!activeEditorGroupEmpty"
-    },
-    {
-        "command": "-workbench.action.quickOpenNavigateNextInEditorPicker",
-        "key": "ctrl+tab",
-        "when": "inEditorsPicker && inQuickOpen"
-    },
-    {
-        "command": "-workbench.action.quickOpenLeastRecentlyUsedEditorInGroup",
-        "key": "ctrl+shift+tab",
-        "when": "!activeEditorGroupEmpty"
-    },
-    {
-        "command": "-workbench.action.quickOpenNavigatePreviousInEditorPicker",
-        "key": "ctrl+shift+tab",
-        "when": "inEditorsPicker && inQuickOpen"
-    },
-    {
-        "command": "workbench.action.previousEditor",
-        "key": "ctrl+shift+tab"
-    },
-    {
-        "command": "-workbench.action.previousEditor",
-        "key": "ctrl+pageup"
-    },
-    {
-        "command": "editor.action.sortLinesAscending",
-        "key": "ctrl+alt+a"
-    },
-    {
-        "command": "editor.action.sortLinesDescending",
-        "key": "ctrl+alt+d"
-    },
-    {
-        "command": "workbench.action.openSettingsJson",
-        "key": "ctrl+shift+alt+oem_comma"
-    },
-    {
-        "command": "workbench.action.terminal.kill",
-        "key": "ctrl+shift+oem_3"
-    },
-    {
-        "command": "workbench.action.terminal.new",
-        "key": "ctrl+alt+shift+oem_3",
-        "when": "terminalProcessSupported || terminalWebExtensionContributedProfile"
-    },
-    {
-        "command": "-workbench.action.terminal.new",
-        "key": "ctrl+shift+oem_3",
-        "when": "terminalProcessSupported || terminalWebExtensionContributedProfile"
-    },
-    {
-        "command": "-workbench.action.terminal.newInNewWindow",
-        "key": "ctrl+shift+alt+oem_3",
-        "when": "terminalHasBeenCreated || terminalProcessSupported"
-    },
-    {
-        "command": "workbench.action.toggleSidebarVisibility",
-        "key": "ctrl+shift+oem_102"
-    },
-    {
-        "command": "-workbench.action.toggleSidebarVisibility",
-        "key": "ctrl+b"
-    },
-    {
-        "command": "workbench.action.toggleAuxiliaryBar",
-        "key": "ctrl+shift+alt+oem_102"
-    },
-    {
-        "command": "-workbench.action.toggleAuxiliaryBar",
-        "key": "ctrl+alt+b"
-    },
-    {
-        "command": "workbench.action.zoomIn",
-        "key": "ctrl+shift+4"
-    },
-    {
-        "command": "-workbench.action.zoomIn",
-        "key": "ctrl+numpad_add"
-    },
-    {
-        "command": "workbench.action.zoomReset",
-        "key": "ctrl+0"
-    },
-    {
-        "command": "-workbench.action.zoomReset",
-        "key": "ctrl+numpad0"
-    },
-    {
-        "command": "json.sort",
-        "key": "ctrl+alt+j"
-    },
-    {
-        "key": "ctrl+oem_102",
-        "command": "editor.action.deleteLines",
-        "when": "textInputFocus && !editorReadonly"
-    },
-    {
-        "key": "ctrl+shift+k",
-        "command": "-editor.action.deleteLines",
-        "when": "textInputFocus && !editorReadonly"
-    }
+  {
+    "command": "workbench.action.nextEditor",
+    "key": "ctrl+tab"
+  },
+  {
+    "command": "-workbench.action.nextEditor",
+    "key": "ctrl+pagedown"
+  },
+  {
+    "command": "-workbench.action.quickOpenPreviousRecentlyUsedEditorInGroup",
+    "key": "ctrl+tab",
+    "when": "!activeEditorGroupEmpty"
+  },
+  {
+    "command": "-workbench.action.quickOpenNavigateNextInEditorPicker",
+    "key": "ctrl+tab",
+    "when": "inEditorsPicker && inQuickOpen"
+  },
+  {
+    "command": "-workbench.action.quickOpenLeastRecentlyUsedEditorInGroup",
+    "key": "ctrl+shift+tab",
+    "when": "!activeEditorGroupEmpty"
+  },
+  {
+    "command": "-workbench.action.quickOpenNavigatePreviousInEditorPicker",
+    "key": "ctrl+shift+tab",
+    "when": "inEditorsPicker && inQuickOpen"
+  },
+  {
+    "command": "workbench.action.previousEditor",
+    "key": "ctrl+shift+tab"
+  },
+  {
+    "command": "-workbench.action.previousEditor",
+    "key": "ctrl+pageup"
+  },
+  {
+    "command": "editor.action.sortLinesAscending",
+    "key": "ctrl+alt+a"
+  },
+  {
+    "command": "editor.action.sortLinesDescending",
+    "key": "ctrl+alt+d"
+  },
+  {
+    "command": "workbench.action.openSettingsJson",
+    "key": "ctrl+shift+alt+oem_comma"
+  },
+  {
+    "command": "workbench.action.terminal.kill",
+    "key": "ctrl+shift+oem_3"
+  },
+  {
+    "command": "workbench.action.terminal.new",
+    "key": "ctrl+alt+shift+oem_3",
+    "when": "terminalProcessSupported || terminalWebExtensionContributedProfile"
+  },
+  {
+    "command": "-workbench.action.terminal.new",
+    "key": "ctrl+shift+oem_3",
+    "when": "terminalProcessSupported || terminalWebExtensionContributedProfile"
+  },
+  {
+    "command": "-workbench.action.terminal.newInNewWindow",
+    "key": "ctrl+shift+alt+oem_3",
+    "when": "terminalHasBeenCreated || terminalProcessSupported"
+  },
+  {
+    "command": "workbench.action.toggleSidebarVisibility",
+    "key": "ctrl+shift+oem_102"
+  },
+  {
+    "command": "-workbench.action.toggleSidebarVisibility",
+    "key": "ctrl+b"
+  },
+  {
+    "command": "workbench.action.toggleAuxiliaryBar",
+    "key": "ctrl+shift+alt+oem_102"
+  },
+  {
+    "command": "-workbench.action.toggleAuxiliaryBar",
+    "key": "ctrl+alt+b"
+  },
+  {
+    "command": "workbench.action.zoomIn",
+    "key": "ctrl+shift+4"
+  },
+  {
+    "command": "-workbench.action.zoomIn",
+    "key": "ctrl+numpad_add"
+  },
+  {
+    "command": "workbench.action.zoomReset",
+    "key": "ctrl+0"
+  },
+  {
+    "command": "-workbench.action.zoomReset",
+    "key": "ctrl+numpad0"
+  },
+  {
+    "command": "json.sort",
+    "key": "ctrl+alt+j"
+  },
+  {
+    "key": "ctrl+oem_102",
+    "command": "editor.action.deleteLines",
+    "when": "textInputFocus && !editorReadonly"
+  },
+  {
+    "key": "ctrl+shift+k",
+    "command": "-editor.action.deleteLines",
+    "when": "textInputFocus && !editorReadonly"
+  },
+  {
+    "key": "ctrl+alt+x",
+    "command": "workbench.action.tasks.runTask"
+  }
 ]

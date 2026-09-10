@@ -1,13 +1,11 @@
 #Requires AutoHotkey v2.0
 
-; Suppress bare Windows key (Start menu won't appear, Win hotkeys still work)
+#Include "utils.ahk"
+
 ~LWin:: Send("{Blind}{vkE8}")
 ~RWin:: Send("{Blind}{vkE8}")
 
-; Win + c: Close active window
 #c:: CloseActiveWindow()
-
-; Win + Shift + c: Kill active/focused process
 #+c:: KillActiveProcess()
 
 ScrollLock:: RevealTaskbar()
@@ -17,10 +15,6 @@ ScrollLock:: RevealTaskbar()
 
 #WheelUp:: AdjustWindowTransparency(25)
 #WheelDown:: AdjustWindowTransparency(-25)
-
-#HotIf CurrentZoom > 1.0
-Esc:: CloseZoom()
-#HotIf
 
 #w:: LaunchApp("C:\Users\" . A_UserName . "\AppData\Local\Programs\VSCodium\VSCodium.exe")
 #x:: LaunchApp("wt.exe", { winTitle: "WindowsTerminal.exe" })
