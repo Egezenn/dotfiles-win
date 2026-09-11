@@ -12,6 +12,11 @@ if [[ -n "${USERPROFILE:-}" ]]; then
     WIN_USER="$(cygpath -u "$USERPROFILE")"
 fi
 
+PROGRAM_FILES="/c/Program Files"
+if [[ -n "${PROGRAMFILES:-}" ]]; then
+    PROGRAM_FILES="$(cygpath -u "$PROGRAMFILES")"
+fi
+
 MSYS_HOME="${HOME:-/home/${USERNAME}}"
 APPDATA="${WIN_USER}/AppData/Roaming"
 LOCALAPPDATA="${WIN_USER}/AppData/Local"
@@ -57,13 +62,31 @@ link_dir() {
     log_ok "$src" "$dest"
 }
 
+copy_file() {
+    local src="$1"
+    local dest="$2"
+
+    if [[ ! -e "$src" ]]; then
+        log_warn "Source file not found: $src (skipping)"
+        return 0
+    fi
+
+    mkdir -p "$(dirname "$dest")"
+    rm -f "$dest"
+    cp -f "$src" "$dest"
+    log_ok "$src" "$dest"
+}
+
 log_info "Starting symlink deployment from $DOTFILES_DIR"
 
 # AltSnap
 link_file "$DOTFILES_DIR/loose/AltSnap.ini" "$APPDATA/AltSnap/AltSnap.ini"
 
 # Everything
-link_file "$DOTFILES_DIR/loose/Everything-1.5a.ini" "$APPDATA/Everything/Everything-1.5a.ini"
+copy_file "$DOTFILES_DIR/loose/Everything-1.5a.ini" "$APPDATA/Everything/Everything-1.5a.ini"
+
+# Explorer++
+copy_file "$DOTFILES_DIR/loose/Explorer++-config.xml" "$PROGRAM_FILES/Explorer++/config.xml"
 
 # VSCodium & VS Code
 link_file "$DOTFILES_DIR/vscode/settings.json" "$APPDATA/VSCodium/User/settings.json"

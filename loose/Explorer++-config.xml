@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<!-- Preference file for Explorer++ -->
+<ExplorerPlusPlus>
+	<Settings>
+		<Setting name="AllowMultipleInstances">yes</Setting>
+		<Setting name="AlwaysOpenInNewTab">no</Setting>
+		<Setting name="AlwaysShowTabBar">no</Setting>
+		<Setting name="AutoArrangeGlobal">yes</Setting>
+		<Setting name="CheckBoxSelection">no</Setting>
+		<Setting name="ConfirmCloseTabs">no</Setting>
+		<Setting name="DisableFolderSizesNetworkRemovable">no</Setting>
+		<Setting name="DisplayCentreColor" r="0" g="0" b="0"/>
+		<Setting name="DisplayFont" Height="-13" Width="0" Weight="500" Italic="no" Underline="no" Strikeout="no" Font="Segoe UI"/>
+		<Setting name="DisplaySurroundColor" r="0" g="0" b="0"/>
+		<Setting name="DisplayTextColor" r="255" g="255" b="255"/>
+		<Setting name="DisplayWindowVertical">no</Setting>
+		<Setting name="DoubleClickTabClose">no</Setting>
+		<Setting name="ExtendTabControl">no</Setting>
+		<Setting name="ForceSize">no</Setting>
+		<Setting name="OpenContainerFiles">yes</Setting>
+		<Setting name="HideLinkExtensionGlobal">no</Setting>
+		<Setting name="HideSystemFilesGlobal">no</Setting>
+		<Setting name="InfoTipType">0</Setting>
+		<Setting name="InsertSorted">yes</Setting>
+		<Setting name="Language">3081</Setting>
+		<Setting name="LargeToolbarIcons">no</Setting>
+		<Setting name="LockToolbars">yes</Setting>
+		<Setting name="NextToCurrent">no</Setting>
+		<Setting name="NewTabDirectory">C:\Users\devbox</Setting>
+		<Setting name="OneClickActivate">no</Setting>
+		<Setting name="OneClickActivateHoverTime">500</Setting>
+		<Setting name="OverwriteExistingFilesConfirmation">yes</Setting>
+		<Setting name="ReplaceExplorerMode">1</Setting>
+		<Setting name="ShowAddressBar">yes</Setting>
+		<Setting name="ShowApplicationToolbar">no</Setting>
+		<Setting name="ShowBookmarksToolbar">yes</Setting>
+		<Setting name="ShowDrivesToolbar">yes</Setting>
+		<Setting name="ShowDisplayWindow">no</Setting>
+		<Setting name="ShowExtensions">yes</Setting>
+		<Setting name="ShowFilePreviews">yes</Setting>
+		<Setting name="ShowFolders">no</Setting>
+		<Setting name="ShowFolderSizes">no</Setting>
+		<Setting name="ShowFriendlyDates">yes</Setting>
+		<Setting name="ShowFullTitlePath">yes</Setting>
+		<Setting name="ShowGridlinesGlobal">no</Setting>
+		<Setting name="ShowHiddenGlobal">yes</Setting>
+		<Setting name="ShowInfoTips">yes</Setting>
+		<Setting name="ShowInGroupsGlobal">no</Setting>
+		<Setting name="ShowPrivilegeLevelInTitleBar">no</Setting>
+		<Setting name="ShowStatusBar">yes</Setting>
+		<Setting name="ShowTabBarAtBottom">no</Setting>
+		<Setting name="ShowTaskbarThumbnails">yes</Setting>
+		<Setting name="ShowToolbar">no</Setting>
+		<Setting name="ShowUserNameTitleBar">no</Setting>
+		<Setting name="SizeDisplayFormat">1</Setting>
+		<Setting name="SortAscendingGlobal">yes</Setting>
+		<Setting name="StartupMode">2</Setting>
+		<Setting name="SynchronizeTreeview">no</Setting>
+		<Setting name="TVAutoExpandSelected">no</Setting>
+		<Setting name="UseFullRowSelect">yes</Setting>
+		<Setting name="IconTheme">0</Setting>
+		<Setting name="TreeViewDelayEnabled">no</Setting>
+		<Setting name="ViewModeGlobal">4</Setting>
+		<Setting name="CheckPinnedToNamespaceTreeProperty">no</Setting>
+		<Setting name="ShowQuickAccessInTreeView">yes</Setting>
+		<Setting name="Theme">2</Setting>
+		<Setting name="DisplayMixedFilesAndFolders">no</Setting>
+		<Setting name="UseNaturalSortOrder">yes</Setting>
+		<Setting name="OpenTabsInForeground">no</Setting>
+		<Setting name="GroupSortDirectionGlobal">0</Setting>
+		<Setting name="GoUpOnDoubleClick">yes</Setting>
+		<Setting name="StartupFolders"/>
+	</Settings>
+</ExplorerPlusPlus>
