@@ -113,10 +113,12 @@ clone_plugin "zsh-history-substring-search" "https://github.com/zsh-users/zsh-hi
 
 # Zsh
 link_file "$DOTFILES_DIR/.zshrc" "$MSYS_HOME/.zshrc"
-link_file "$DOTFILES_DIR/.zshrc" "$WIN_USER/.zshrc"
 link_dir  "$DOTFILES_DIR/zsh" "$MSYS_HOME/.config/zsh"
 
 # Starship
 link_file "$DOTFILES_DIR/loose/starship.toml" "$MSYS_HOME/.config/starship.toml"
+
+# Nano
+link_file "$DOTFILES_DIR/nano/nanorc" "$MSYS_HOME/.config/nano/nanorc"
 
 log_info "All symlinks processed successfully."

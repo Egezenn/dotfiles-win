@@ -23,11 +23,15 @@ ScrollLock:: RevealTaskbar()
 #+x:: A_Clipboard := ""
 #+r:: FileRecycleEmpty
 
+#e:: LaunchApp("C:\Program Files\Explorer++\Explorer++.exe", { wintitle: "ahk_exe Explorer++.exe" })
 #s:: Run('"C:\Program Files\Everything 1.5a\Everything.exe" -sort "Date Modified" -sort-descending -s ""')
 #r:: Run('"C:\Program Files\Everything 1.5a\Everything.exe" -sort "Run Count" -sort-descending -s "ext:lnk "')
 
+#HotIf WinActive("ahk_class EVERYTHING") || WinActive("ahk_exe Everything.exe") || WinActive("ahk_exe Explorer++.exe") || WinActive("ahk_exe SystemInformer.exe")
+Esc:: WinClose("A")
+#HotIf
+
 #HotIf WinActive("ahk_class EVERYTHING") || WinActive("ahk_exe Everything.exe")
-Esc:: WinMinimize("A")
 #s:: WinMinimize("A")
 #r:: WinMinimize("A")
 #HotIf

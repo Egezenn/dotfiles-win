@@ -8,6 +8,8 @@
       - CHERE_INVOKING  = "1"                       (Preserve current working directory)
       - MSYS2_PATH_TYPE = "inherit"                 (Inherit Windows %PATH%)
       - MSYS            = "winsymlinks:nativestrict" (Native NTFS symlinks)
+      - EDITOR          = "nano"                    (Default terminal editor)
+      - VISUAL          = "nano"                    (Default visual editor)
 #>
 [CmdletBinding()]
 param()
@@ -17,6 +19,8 @@ $envVars = [ordered]@{
     "CHERE_INVOKING"  = "1"
     "MSYS2_PATH_TYPE" = "inherit"
     "MSYS"            = "winsymlinks:nativestrict"
+    "EDITOR"          = "nano"
+    "VISUAL"          = "nano"
 }
 
 Write-Host "`n[*] Configuring MSYS2 User Environment Variables..." -ForegroundColor Cyan

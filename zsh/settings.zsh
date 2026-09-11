@@ -39,11 +39,15 @@ setopt PROMPT_SUBST              # Parameter expansion and command substitution 
 zmodload -i zsh/complist
 
 autoload -Uz compinit
+local zcompdump="${XDG_CACHE_HOME:-$HOME/.cache}/zsh/zcompdump"
+[[ ! -d "${zcompdump:h}" ]] && mkdir -p "${zcompdump:h}"
+
 # Speed up compinit by checking dump file once per day
-if [[ -n ${ZDOTDIR:-$HOME}/.zcompdump(#qN.mh+24) ]]; then
-    compinit
+if [[ -n "$zcompdump"(#qN.mh+24) || ! -f "$zcompdump" ]]; then
+    compinit -d "$zcompdump"
+    touch "$zcompdump"
 else
-    compinit -C
+    compinit -C -d "$zcompdump"
 fi
 
 # Completion matching: case-insensitive & partial-word completion

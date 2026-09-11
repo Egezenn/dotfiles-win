@@ -1,0 +1,38 @@
+## --- Interface & Display ---
+set minibar
+set nohelp
+set linenumbers
+set indicator
+set stateflags
+set boldtext
+
+## --- Editing & Indentation ---
+set autoindent
+set tabsize 4
+set tabstospaces
+set smarthome
+set zap
+set trimblanks
+set softwrap
+set atblanks
+
+## --- Navigation & History ---
+set mouse
+set positionlog
+set historylog
+set colonparsing
+
+## --- UI Color Styling ---
+set statuscolor bold,white,green
+set promptcolor lightwhite,grey
+set errorcolor bold,white,red
+set selectedcolor white,magenta
+set stripecolor ,yellow
+set scrollercolor cyan
+set numbercolor cyan
+set keycolor lightcyan
+set functioncolor white
+
+## --- Syntax Highlighting ---
+include "/usr/share/nano/*.nanorc"
+include "/usr/share/nano/extra/*.nanorc"

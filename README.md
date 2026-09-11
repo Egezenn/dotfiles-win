@@ -29,6 +29,8 @@ Everything: https://www.voidtools.com/
 
 VDA: https://github.com/Ciantic/VirtualDesktopAccessor
 
+Explorer++: https://github.com/derceg/explorerplusplus [\*](https://github.com/derceg/explorerplusplus/actions/workflows/build.yml)
+
 ## MSYS2 zsh + WindowsTerminal
 
 Dependencies must be from a Cygwin shell instead of WinGet because paths
@@ -48,9 +50,9 @@ winget source remove msstore
 ```
 
 ```shell
-winget install altsnap autohotkey microsoft.visualstudio.community microsoft.windowsterminal msys2.msys2 systeminformer voidtools.everything.alpha vscodium
+winget install altsnap autohotkey microsoft.vcredist.2015+.x64 microsoft.visualstudio.community microsoft.windowsterminal msys2.msys2 systeminformer voidtools.everything.alpha vscodium
 ```
 
 ```shell
-pacman -S $MINGW_PACKAGE_PREFIX-fd $MINGW_PACKAGE_PREFIX-fzf $MINGW_PACKAGE_PREFIX-magick $MINGW_PACKAGE_PREFIX-mpv $MINGW_PACKAGE_PREFIX-starship $MINGW_PACKAGE_PREFIX-ripgrep $MINGW_PACKAGE_PREFIX-zoxide
+pacman -S zsh $MINGW_PACKAGE_PREFIX-fd $MINGW_PACKAGE_PREFIX-fzf $MINGW_PACKAGE_PREFIX-lsd $MINGW_PACKAGE_PREFIX-imagemagick $MINGW_PACKAGE_PREFIX-mpv $MINGW_PACKAGE_PREFIX-ripgrep $MINGW_PACKAGE_PREFIX-starship $MINGW_PACKAGE_PREFIX-ttf-font-nerd $MINGW_PACKAGE_PREFIX-zoxide
 ```
