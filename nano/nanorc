@@ -17,7 +17,6 @@ set softwrap
 set atblanks
 
 ## --- Navigation & History ---
-set mouse
 set positionlog
 set historylog
 set colonparsing

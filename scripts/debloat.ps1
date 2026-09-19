@@ -29,9 +29,8 @@
        - Disables \Microsoft\Windows\Defrag\ScheduledDefrag (prevents HDD grinding).
        - Real-time inline TRIM on SSD remains 100% active via NTFS DisableDeleteNotify.
 
-    4. MMCSS & System Responsiveness Tuning:
+    4. MMCSS Tuning:
        - NetworkThrottlingIndex = 0xffffffff (Disables network packet throttling during gaming/media).
-       - SystemResponsiveness = 0 (Gives 100% CPU priority to foreground apps instead of reserving 20%).
 
     5. Network Stack Tuning (Disables Nagle's Algorithm):
        - Dynamically detects all active network adapters (by IPEnabled and SettingID).
@@ -159,13 +158,11 @@ if ($Status) {
         Write-Host "ScheduledDefrag (Mechanical HDD Auto-Defrag)" -ForegroundColor White
     }
 
-    Write-Host "`n=== MMCSS & System Responsiveness ===" -ForegroundColor Cyan
+    Write-Host "`n=== MMCSS Tuning ===" -ForegroundColor Cyan
     $mmcss = Get-ItemProperty -Path $mmcssKey -ErrorAction SilentlyContinue
     $val = $mmcss.NetworkThrottlingIndex
     $throttling = if ($val -eq -1 -or $val -eq 4294967295) { "Disabled (Optimized)" } else { "$val (Default Throttled)" }
-    $resp = if ($mmcss.SystemResponsiveness -eq 0) { "0% (100% Foreground App Priority)" } else { "$($mmcss.SystemResponsiveness)% Reserved for Background" }
     Write-Host "  NetworkThrottlingIndex : $throttling"
-    Write-Host "  SystemResponsiveness   : $resp"
 
     Write-Host "`n=== Network Stack (Nagle's Algorithm) ===" -ForegroundColor Cyan
     $adapters = Get-ActiveNetworkInterfaces
@@ -226,8 +223,7 @@ if ($Enable) {
 
     Write-Host "`n[*] Restoring MMCSS registry defaults..." -ForegroundColor Cyan
     Set-ItemProperty -Path $mmcssKey -Name "NetworkThrottlingIndex" -Value 10 -Type DWord -Force
-    Set-ItemProperty -Path $mmcssKey -Name "SystemResponsiveness" -Value 20 -Type DWord -Force
-    Write-Host "  [+] NetworkThrottlingIndex -> 10, SystemResponsiveness -> 20" -ForegroundColor Green
+    Write-Host "  [+] NetworkThrottlingIndex -> 10" -ForegroundColor Green
 
     Write-Host "`n[*] Restoring TCP Nagle's algorithm to default..." -ForegroundColor Cyan
     $adapters = Get-ActiveNetworkInterfaces
@@ -286,11 +282,9 @@ Write-Host "`n[*] 3. Disabling Scheduled HDD Defrag (preserving SSD inline TRIM)
 Disable-ScheduledTask -TaskPath "\Microsoft\Windows\Defrag\" -TaskName "ScheduledDefrag" -ErrorAction SilentlyContinue | Out-Null
 Write-Host "  [+] ScheduledDefrag task disabled." -ForegroundColor Green
 
-Write-Host "`n[*] 4. Optimizing MMCSS & System Responsiveness..." -ForegroundColor Cyan
+Write-Host "`n[*] 4. Optimizing MMCSS..." -ForegroundColor Cyan
 Set-ItemProperty -Path $mmcssKey -Name "NetworkThrottlingIndex" -Value 0xffffffff -Type DWord -Force
-Set-ItemProperty -Path $mmcssKey -Name "SystemResponsiveness" -Value 0 -Type DWord -Force
 Write-Host "  [+] NetworkThrottlingIndex -> 0xffffffff (Throttling disabled)" -ForegroundColor Green
-Write-Host "  [+] SystemResponsiveness   -> 0 (100% foreground CPU priority)" -ForegroundColor Green
 
 Write-Host "`n[*] 5. Disabling Nagle's Algorithm on active network interfaces..." -ForegroundColor Cyan
 $adapters = Get-ActiveNetworkInterfaces
