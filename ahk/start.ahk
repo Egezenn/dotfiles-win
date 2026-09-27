@@ -17,6 +17,7 @@ A_HotkeyInterval := 0
 #Include "sswm.ahk"
 #Include "shortcuts.ahk"
 #Include "oddities.ahk"
+#Include "mpd.ahk"
 
 try WinSetTransparent 0, "ahk_class Shell_TrayWnd"
 try WinSetTransparent 0, "ahk_class Shell_SecondaryTrayWnd"

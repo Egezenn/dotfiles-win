@@ -113,6 +113,13 @@ if [[ "$wt_found" = false ]]; then
     log_warn "No Windows Terminal package directory found under $LOCALAPPDATA/Packages"
 fi
 
+# Pyrefly
+link_file "$DOTFILES_DIR/loose/.pyrefly.toml" "$WIN_USER/.pyrefly.toml"
+
+# mpd
+link_file "$DOTFILES_DIR/loose/mpd.conf" "$LOCALAPPDATA/mpd/mpd.conf"
+
+
 # ------------------------------------------------------------------------------
 # Zsh Plugins (cloned via --depth 1)
 # ------------------------------------------------------------------------------

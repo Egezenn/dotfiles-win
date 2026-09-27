@@ -50,7 +50,7 @@ winget source remove msstore
 ```
 
 ```shell
-winget install AltSnap AutoHotkey Microsoft.VCRedist.2015+.x64 Microsoft.WindowsTerminal MSYS2.MSYSs2 SystemInformer voidtools.Everything.Alpha VSCodium
+winget install AltSnap AutoHotkey Microsoft.VCRedist.2015+.x64 Microsoft.WindowsTerminal MSYS2.MSYS2 OpenJS.NodeJS SystemInformer astral-sh.uv voidtools.Everything.Alpha VSCodium
 ```
 
 ```shell

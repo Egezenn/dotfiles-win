@@ -249,10 +249,13 @@ RevealTaskbar() {
 ; Rest
 ; ------------------------------------------------------------------------------
 
-; Display an auto-dismissing tooltip (default 3 seconds)
-ShowTooltip(msg, timeoutMs := 3000) {
-    ToolTip(msg)
-    SetTimer(() => ToolTip(), -Abs(timeoutMs))
+; Display an auto-dismissing ghost tooltip (click-through by default)
+ShowTooltip(msg, timeoutMs := 3000, x?, y?, whichToolTip := 1, ghost := true) {
+    ToolTip(msg, x?, y?, whichToolTip)
+    if (ghost && hwnd := WinExist("ahk_class tooltips_class32 ahk_pid " . ProcessExist()))
+        WinSetExStyle("+0x20", hwnd) ; WS_EX_TRANSPARENT: mouse clicks pass through directly
+    if (timeoutMs > 0)
+        SetTimer(() => ToolTip(,,, whichToolTip), -Abs(timeoutMs))
 }
 
 ; Toggle a Windows service (running <-> stopped) using native Service Control Manager APIs

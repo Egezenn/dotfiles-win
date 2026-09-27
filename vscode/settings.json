@@ -1,8 +1,20 @@
 {
   "[jsonc]": { "editor.defaultFormatter": "esbenp.prettier-vscode" },
   "[typescript]": { "editor.defaultFormatter": "esbenp.prettier-vscode" },
+  "terminal.integrated.profiles.windows": {
+    "MSYS2 UCRT64": {
+      "args": ["-l"],
+      "path": "C:\\msys64\\usr\\bin\\zsh.exe"
+    }
+  },
+  "files.exclude": {
+    "**/__pycache__": true,
+    "**/*.dll": true,
+    "**/*.so": true
+  },
   "editor.fontFamily": "MesloLGM Nerd Font Mono",
   "editor.formatOnSave": true,
+  "editor.inlayHints.enabled": "offUnlessPressed",
   "editor.minimap.enabled": false,
   "editor.unicodeHighlight.includeStrings": false,
   "explorer.autoReveal": false,
@@ -14,9 +26,10 @@
   "files.associations": { "*.json": "jsonc" },
   "git.enableSmartCommit": true,
   "git.openRepositoryInParentFolders": "never",
+  "network.meteredConnection": "on",
   "prettier.tabWidth": 2,
-  "python.languageServer": "Default",
   "python.terminal.activateEnvironment": false,
+  "ruff.lineLength": 120,
   "security.workspace.trust.untrustedFiles": "open",
   "svelte.enable-ts-plugin": true,
   "task.problemMatchers.neverPrompt": { "shell": true },
@@ -27,12 +40,6 @@
   "terminal.integrated.fontFamily": "MesloLGM Nerd Font Mono",
   "terminal.integrated.initialHint": false,
   "terminal.integrated.persistentSessionReviveProcess": "never",
-  "terminal.integrated.profiles.windows": {
-    "MSYS2 UCRT64": {
-      "args": ["-l"],
-      "path": "C:\\msys64\\usr\\bin\\zsh.exe"
-    }
-  },
   "terminal.integrated.stickyScroll.enabled": false,
   "update.enableWindowsBackgroundUpdates": false,
   "update.mode": "none",
@@ -40,6 +47,9 @@
   "update.titleBar": false,
   "workbench.activityBar.location": "top",
   "workbench.colorTheme": "Dark Modern",
+  "workbench.editor.useModal": "off",
   "workbench.sideBar.location": "right",
-  "workbench.startupEditor": "none"
+  "workbench.startupEditor": "none",
+  "python.languageServer": "Default",
+  "git.confirmSync": false
 }
