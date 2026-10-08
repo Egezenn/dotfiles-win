@@ -5,7 +5,7 @@ ProcessSetPriority("Realtime")
 
 SetWorkingDir(A_ScriptDir)
 SetCapsLockState("AlwaysOff")
-SetNumLockState("AlwaysOff")
+SetNumLockState("AlwaysOn")
 SetScrollLockState("AlwaysOff")
 CoordMode("Mouse", "Screen")
 CoordMode("Pixel", "Screen")

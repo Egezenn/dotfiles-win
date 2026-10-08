@@ -68,16 +68,29 @@ ResolveWinTitle(target, winTitle := "") {
 }
 
 ; Launch an application, wait for window, and activate
-; Options: { winTitle: "", wait: 5, notify: false }
+; Options: { winTitle: "", wait: 5, notify: false, clip: false }
 LaunchApp(target, opts := {}) {
     winTitle := opts.HasProp("winTitle") ? opts.winTitle : ""
     waitTime := opts.HasProp("wait") ? opts.wait : 5
     notify := opts.HasProp("notify") ? opts.notify : false
+    useClip := opts.HasProp("clip") ? opts.clip : false
+
+    if (useClip) {
+        clipPath := GetClipboardPath()
+        if (clipPath != "")
+            target := (SubStr(target, 1, 1) = '"' ? target : '"' . target . '"') . ' "' . clipPath . '"'
+    }
 
     resolvedTitle := ResolveWinTitle(target, winTitle)
 
+    existingHwnds := Map()
+    if (resolvedTitle != "") {
+        for hwnd in WinGetList(resolvedTitle)
+            existingHwnds[hwnd] := true
+    }
+
     try {
-        Run(target)
+        Run(target, , , &pid)
     } catch as err {
         if (notify)
             ShowTooltip("Launch failed: " . err.Message)
@@ -85,12 +98,33 @@ LaunchApp(target, opts := {}) {
     }
 
     if (resolvedTitle != "") {
-        hwnd := WinWait(resolvedTitle, , waitTime)
-        if (hwnd) {
-            try WinActivate(hwnd)
+        startTime := A_TickCount
+        timeoutMs := waitTime * 1000
+        newHwnd := 0
+
+        while (A_TickCount - startTime < timeoutMs) {
+            if (IsSet(pid) && pid) {
+                for hwnd in WinGetList("ahk_pid " . pid) {
+                    if (!existingHwnds.Has(hwnd)) {
+                        newHwnd := hwnd
+                        break 2
+                    }
+                }
+            }
+            for hwnd in WinGetList(resolvedTitle) {
+                if (!existingHwnds.Has(hwnd)) {
+                    newHwnd := hwnd
+                    break 2
+                }
+            }
+            Sleep(50)
+        }
+
+        if (newHwnd) {
+            try WinActivate(newHwnd)
             if (notify)
                 ShowTooltip("Launched: " . ExtractExeName(target))
-            return hwnd
+            return newHwnd
         } else {
             if (notify)
                 ShowTooltip("Launch timed out: " . resolvedTitle)
@@ -101,6 +135,22 @@ LaunchApp(target, opts := {}) {
     if (notify)
         ShowTooltip("Launched: " . ExtractExeName(target))
     return true
+}
+
+GetClipboardPath(trimFile := true) {
+    clip := Trim(A_Clipboard, ' "`t`r`n')
+    if (clip = "")
+        return ""
+    clip := StrReplace(clip, "/", "\")
+    if (SubStr(clip, -1) = "\") {
+        if (!RegExMatch(clip, "^[a-zA-Z]:\\$"))
+            clip := RTrim(clip, "\")
+    } else if (trimFile && InStr(clip, "\")) {
+        clip := RegExReplace(clip, "\\[^\\]*$", "")
+        if (RegExMatch(clip, "^[a-zA-Z]:$"))
+            clip .= "\"
+    }
+    return clip
 }
 
 ; ------------------------------------------------------------------------------
@@ -255,7 +305,7 @@ ShowTooltip(msg, timeoutMs := 3000, x?, y?, whichToolTip := 1, ghost := true) {
     if (ghost && hwnd := WinExist("ahk_class tooltips_class32 ahk_pid " . ProcessExist()))
         WinSetExStyle("+0x20", hwnd) ; WS_EX_TRANSPARENT: mouse clicks pass through directly
     if (timeoutMs > 0)
-        SetTimer(() => ToolTip(,,, whichToolTip), -Abs(timeoutMs))
+        SetTimer(() => ToolTip(, , , whichToolTip), -Abs(timeoutMs))
 }
 
 ; Toggle a Windows service (running <-> stopped) using native Service Control Manager APIs

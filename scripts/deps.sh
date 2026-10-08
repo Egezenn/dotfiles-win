@@ -1,4 +1,4 @@
-npm install -g prettier
+nub install -g prettier
 uv tool install gallery-dl
 uv tool install pyrefly
 uv tool install pytest

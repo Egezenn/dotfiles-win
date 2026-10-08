@@ -6,7 +6,7 @@
     "autoHideWindow": false,
     "copyFormatting": "none",
     "copyOnSelect": false,
-    "defaultProfile": "{6b4b49a3-46aa-4902-83c2-10017b10ffa0}",
+    "defaultProfile": "{574e775e-4f2a-5b96-ac1e-a2962a402336}",
     "disableAnimations": true,
     "firstWindowPreference": "defaultProfile",
     "keybindings": 
@@ -157,6 +157,18 @@
                 "hidden": true,
                 "name": "Visual Studio Debug Console",
                 "source": "VSDebugConsole"
+            },
+            {
+                "guid": "{e0d654da-77ac-57c8-a3d0-af858cb2eddd}",
+                "hidden": false,
+                "name": "Developer Command Prompt for VS 18",
+                "source": "Windows.Terminal.VisualStudio"
+            },
+            {
+                "guid": "{af5ffe95-02b6-54a3-97be-44931a34ebeb}",
+                "hidden": false,
+                "name": "Developer PowerShell for VS 18",
+                "source": "Windows.Terminal.VisualStudio"
             }
         ]
     },

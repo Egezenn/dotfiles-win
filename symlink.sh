@@ -100,6 +100,7 @@ fi
 # PowerShell (pwsh)
 link_file "$DOTFILES_DIR/pwsh/Profile.ps1" "$DOCUMENTS/PowerShell/Microsoft.PowerShell_profile.ps1"
 link_file "$DOTFILES_DIR/pwsh/Profile.ps1" "$DOCUMENTS/PowerShell/Profile.ps1"
+link_file "$DOTFILES_DIR/pwsh/oddities.ps1" "$DOCUMENTS/PowerShell/oddities.ps1"
 
 # Windows Terminal
 wt_found=false

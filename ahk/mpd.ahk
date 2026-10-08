@@ -16,7 +16,7 @@ class MPD {
     static wsaInit := false
     static host := "127.0.0.1"
     static port := 6600
-    static exePath := "C:\Users\" . A_UserName . "\bin\mpd.exe"
+    static exePath := EnvGet("USERPROFILE") . "\bin\mpd.exe"
 
     static EnsureWSA() {
         if (!this.wsaInit) {

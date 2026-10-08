@@ -2,7 +2,7 @@
 ; Simple Stupid Window Manager
 #Requires AutoHotkey v2.0
 
-vdaDll := "C:\Users\" . A_UserName . "\bin\VirtualDesktopAccessor.dll"
+vdaDll := EnvGet("USERPROFILE") . "\bin\VirtualDesktopAccessor.dll"
 hVDA := DllCall("LoadLibrary", "Str", vdaDll, "Ptr")
 
 if (!hVDA) {

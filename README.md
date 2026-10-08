@@ -9,7 +9,7 @@ Autounattend: https://github.com/cschneegans/unattend-generator
 [sswm](ahk/sswm.ahk) with VDA for workspaces:
 
 - Replaces <kbd>CapsLock</kbd> with next/prev workspace
-- <kbd>#x</kbd> for switches (11th desktop is ignored to drop any long running background tasks <kbd>#^Del</kbd> to focus, <kbd>#^+Del</kbd> to move)
+- <kbd>#0-9</kbd> for switches (11th desktop is ignored to drop any long running background tasks <kbd>#^Del</kbd> to focus, <kbd>#^+Del</kbd> to move)
 - <kbd>#CapsLock</kbd>, <kbd>#F1-4</kbd> (hjkl) to focus to windows (works fine for a quad setup, anything else is out of scope and may be undeterministic)
 - <kbd>#!CapsLock</kbd> to reinit workspace window cache
 - <kbd>#F5</kbd> to pin a window across workspaces
@@ -31,11 +31,7 @@ VDA: https://github.com/Ciantic/VirtualDesktopAccessor
 
 Explorer++: https://github.com/derceg/explorerplusplus [\*](https://github.com/derceg/explorerplusplus/actions/workflows/build.yml)
 
-## MSYS2 zsh + WindowsTerminal
-
-Dependencies must be from a Cygwin shell instead of WinGet because paths
-
-Run [init script](scripts/init-env.ps1) to import necessary environment vars.
+MPD: https://www.musicpd.org/download.html
 
 ## Relevant Windows settings & categories
 
@@ -50,9 +46,31 @@ winget source remove msstore
 ```
 
 ```shell
-winget install AltSnap AutoHotkey Microsoft.VCRedist.2015+.x64 Microsoft.WindowsTerminal MSYS2.MSYS2 OpenJS.NodeJS SystemInformer astral-sh.uv voidtools.Everything.Alpha VSCodium
+winget install `
+  AltSnap `
+  astral-sh.uv `
+  AutoHotkey `
+  Microsoft.Coreutils `
+  Microsoft.VCRedist.2015+.x64 `
+  Microsoft.WindowsTerminal `
+  MSYS2.MSYS2 `
+  Nub.Nub `
+  OpenJS.NodeJS `
+  SystemInformer `
+  voidtools.Everything.Alpha `
+  VSCodium
 ```
 
 ```shell
-pacman -S zsh $MINGW_PACKAGE_PREFIX-fd $MINGW_PACKAGE_PREFIX-fzf $MINGW_PACKAGE_PREFIX-lsd $MINGW_PACKAGE_PREFIX-imagemagick $MINGW_PACKAGE_PREFIX-mpv $MINGW_PACKAGE_PREFIX-ripgrep $MINGW_PACKAGE_PREFIX-starship $MINGW_PACKAGE_PREFIX-ttf-font-nerd $MINGW_PACKAGE_PREFIX-zoxide
+pacman -S \
+  zsh \
+  $MINGW_PACKAGE_PREFIX-fd \
+  $MINGW_PACKAGE_PREFIX-fzf \
+  $MINGW_PACKAGE_PREFIX-lsd \
+  $MINGW_PACKAGE_PREFIX-imagemagick \
+  $MINGW_PACKAGE_PREFIX-mpv \
+  $MINGW_PACKAGE_PREFIX-ripgrep \
+  $MINGW_PACKAGE_PREFIX-starship \
+  $MINGW_PACKAGE_PREFIX-ttf-font-nerd \
+  $MINGW_PACKAGE_PREFIX-zoxide
 ```

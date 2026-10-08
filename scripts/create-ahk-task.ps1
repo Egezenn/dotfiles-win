@@ -15,7 +15,7 @@
 param(
     [string]$TaskName = "StartAHK",
     [string]$AhkScriptPath,
-    [string]$AhkExePath
+    [string]$AhkExePath = "C:\Program Files\AutoHotkey\v2\AutoHotkey64_UIA.exe"
 )
 
 # Resolve repo root and ahk script path
@@ -26,30 +26,7 @@ if (-not $AhkScriptPath) {
     $AhkScriptPath = Join-Path $RepoRoot "ahk\start.ahk"
 }
 
-if (-not (Test-Path $AhkScriptPath)) {
-    throw "AutoHotkey script not found at: $AhkScriptPath"
-}
-
 $WorkingDir = Split-Path -Parent $AhkScriptPath
-
-# Resolve AutoHotkey v2 executable
-if (-not $AhkExePath) {
-    $candidates = @(
-        "C:\Program Files\AutoHotkey\v2\AutoHotkey64_UIA.exe",
-        "$env:LOCALAPPDATA\Programs\AutoHotkey\v2\AutoHotkey64_UIA.exe",
-        (Get-Command AutoHotkey64_UIA.exe -ErrorAction SilentlyContinue | Select-Object -ExpandProperty Source -First 1)
-    )
-    foreach ($cand in $candidates) {
-        if ($cand -and (Test-Path $cand)) {
-            $AhkExePath = $cand
-            break
-        }
-    }
-}
-
-if (-not $AhkExePath -or -not (Test-Path $AhkExePath)) {
-    throw "AutoHotkey v2 executable not found. Please install AutoHotkey v2 or specify -AhkExePath."
-}
 
 Write-Host "[INFO] Registering Scheduled Task: $TaskName" -ForegroundColor Cyan
 Write-Host "       Executable: $AhkExePath"
